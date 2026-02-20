@@ -42,6 +42,7 @@ export default function BulkIssuePage() {
   const [error, setError] = useState<string | null>(null);
   const [report, setReport] = useState<BulkIssueResponse | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const submittingRef = useRef(false); // prevents double-submit
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -54,6 +55,8 @@ export default function BulkIssuePage() {
   }
 
   async function handleSubmit(formData: FormData) {
+    if (submittingRef.current) return; // block double-submit
+    submittingRef.current = true;
     setError(null);
     setLoading(true);
     setReport(null);
@@ -61,19 +64,22 @@ export default function BulkIssuePage() {
     formData.set("certificateType", certType);
     formData.set("skipBlockchain", String(skipBlockchain));
 
-    const result = await bulkIssueAction(formData);
-
-    if ("error" in result) {
-      setError(result.error);
-    } else {
-      setReport(result.data);
-      if (result.data.failed === 0) {
-        toast.success(`All ${result.data.succeeded} certificates issued.`);
+    try {
+      const result = await bulkIssueAction(formData);
+      if ("error" in result) {
+        setError(result.error);
       } else {
-        toast.warning(`${result.data.succeeded} issued, ${result.data.failed} failed.`);
+        setReport(result.data);
+        if (result.data.failed === 0) {
+          toast.success(`All ${result.data.succeeded} certificates issued.`);
+        } else {
+          toast.warning(`${result.data.succeeded} issued, ${result.data.failed} failed.`);
+        }
       }
+    } finally {
+      setLoading(false);
+      submittingRef.current = false;
     }
-    setLoading(false);
   }
 
   return (
@@ -275,9 +281,10 @@ export default function BulkIssuePage() {
                       Skip blockchain registration
                     </label>
                     <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                      Certificates are stored in the database and fully
-                      verifiable. Use this to save POL — each on-chain tx costs
-                      ≈&nbsp;0.00005 POL on Amoy testnet.
+                      Certificates are stored in the database only —{" "}
+                      <span className="text-amber-600 font-medium">not blockchain-verifiable</span>.
+                      Public verify page will show &quot;Not Found on Chain&quot;.
+                      Use only to save POL gas (≈&nbsp;0.00023 POL/cert on Amoy).
                     </p>
                   </div>
                 </div>

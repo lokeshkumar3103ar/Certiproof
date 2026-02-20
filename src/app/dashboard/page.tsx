@@ -274,13 +274,17 @@ export default async function DashboardPage() {
                           </code>
                         </TableCell>
                         <TableCell>
-                          {cert.status === "issued" ? (
-                            <Badge className="rounded-full bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-50 text-xs font-semibold">
-                              ● Active
-                            </Badge>
-                          ) : (
+                          {cert.status === "revoked" ? (
                             <Badge className="rounded-full bg-destructive/10 text-destructive border-destructive/20 hover:bg-destructive/10 text-xs font-semibold">
                               ● Revoked
+                            </Badge>
+                          ) : cert.tx_hash ? (
+                            <Badge className="rounded-full bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-50 text-xs font-semibold">
+                              ● On-Chain
+                            </Badge>
+                          ) : (
+                            <Badge className="rounded-full bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-50 text-xs font-semibold" title="Stored in database only — not anchored on blockchain">
+                              ● DB Only
                             </Badge>
                           )}
                         </TableCell>
