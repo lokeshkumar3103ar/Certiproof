@@ -29,9 +29,6 @@ export async function Navbar() {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
-              <NavLink href="/verify" icon={<ShieldCheck className="h-3.5 w-3.5" />}>
-                Verify
-              </NavLink>
               {user && (
                 <>
                   <NavLink href="/dashboard" icon={<LayoutDashboard className="h-3.5 w-3.5" />}>
@@ -51,8 +48,11 @@ export async function Navbar() {
             </nav>
           </div>
 
-          {/* Right side - Auth + Mobile menu */}
+          {/* Right side - Verify + Auth + Mobile menu */}
           <div className="flex items-center gap-2">
+            <NavLink href="/verify" icon={<ShieldCheck className="h-3.5 w-3.5" />}>
+              Verify
+            </NavLink>
             <NavAuthSection user={user} />
             {/* Mobile menu */}
             <NavMobile user={user} />

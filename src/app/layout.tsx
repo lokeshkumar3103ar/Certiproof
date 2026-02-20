@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CertChain — Secure Certificate Issuance & Verification",
+  title: "Certitrust - Secure Certificate Issuance & Verification",
   description:
     "Cryptographically secure certificate issuance platform with blockchain-anchored proof of authenticity. SHA-256 hashing, Polygon on-chain registry, and DigiLocker-compatible architecture.",
 };
