@@ -176,7 +176,7 @@ export default async function DashboardPage() {
           ].map(({ label, value, icon: Icon, color, bg, iconColor, ring }) => (
             <Card
               key={label}
-              className={`border-border shadow-none transition-all hover:shadow-sm ${ring ?? ""}`}
+              className={`card-wave-hover relative overflow-hidden border-border shadow-none transition-all hover:shadow-sm ${ring ?? ""}`}
             >
               <CardContent className="flex items-center justify-between pt-5 pb-5 px-6">
                 <div>

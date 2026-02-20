@@ -136,6 +136,39 @@
   .stat-card {
     @apply border-l-4 border-l-primary/30 pl-4;
   }
+
+  /* ── Card hover wave: yellow accent spreads from centre across full card ── */
+  .card-wave-hover {
+    isolation: isolate;
+  }
+  .card-wave-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(232, 183, 74, 0.22) 0%,
+      rgba(232, 183, 74, 0.10) 40%,
+      transparent 70%
+    );
+    transform: scale(0);
+    opacity: 0;
+    transition:
+      transform 0.65s cubic-bezier(0.2, 0, 0.3, 1),
+      opacity   0.45s ease;
+    z-index: 1;
+  }
+  .card-wave-hover:hover::before {
+    transform: scale(2.6);
+    opacity: 1;
+  }
+  /* Keep card content above the wave layer */
+  .card-wave-hover > * {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 

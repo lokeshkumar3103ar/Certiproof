@@ -103,7 +103,7 @@ export default function HomePage() {
                 ))}
               </ul>
 
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="mt-10 flex flex-col gap-4">
                 <Link href="/verify">
                   <Button
                     size="lg"
@@ -238,7 +238,7 @@ export default function HomePage() {
             ].map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="group relative overflow-hidden rounded-2xl border border-destructive/10 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-[0_8px_32px_rgba(220,38,38,0.08)] hover:-translate-y-0.5"
+                className="card-wave-hover group relative overflow-hidden rounded-2xl border border-destructive/10 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-[0_8px_32px_rgba(220,38,38,0.08)] hover:-translate-y-0.5"
               >
                 {/* corner accent */}
                 <span className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-destructive/[0.04] transition-all duration-300 group-hover:bg-destructive/[0.08]" />
@@ -311,7 +311,7 @@ export default function HomePage() {
             ].map(({ n, icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="group relative rounded-2xl border border-primary/10 bg-white/70 p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-[0_8px_40px_rgba(58,91,142,0.12)] hover:-translate-y-1"
+                className="card-wave-hover group relative overflow-hidden rounded-2xl border border-primary/10 bg-white/70 p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-[0_8px_40px_rgba(58,91,142,0.12)] hover:-translate-y-1"
               >
                 {/* top row */}
                 <div className="mb-5 flex items-center justify-between">
