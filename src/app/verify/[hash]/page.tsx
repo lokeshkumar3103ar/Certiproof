@@ -23,6 +23,9 @@ import {
   Building2,
   Fingerprint,
   FileDown,
+  ShieldAlert,
+  GraduationCap,
+  User,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -68,11 +71,13 @@ export default async function VerifyResultPage({
 
   return (
     <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-      {/* Status Banner */}
-      <div className="text-center mb-8">
-        {isValid ? (
-          <div className="space-y-3">
-            <div className="flex justify-center">
+
+      {/* ── VALID ──────────────────────────────────────────────── */}
+      {isValid && cert && issuer && (
+        <>
+          {/* Status tick */}
+          <div className="text-center mb-6">
+            <div className="flex justify-center mb-3">
               <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
                 <CheckCircle className="h-8 w-8 text-primary" />
               </div>
@@ -80,11 +85,78 @@ export default async function VerifyResultPage({
             <h1 className="text-2xl font-semibold text-foreground">
               Certificate Verified
             </h1>
-            <Badge className="bg-primary/10 text-primary border-primary/20" variant="outline">
+            <Badge className="mt-2 bg-primary/10 text-primary border-primary/20" variant="outline">
               Authentic &middot; On-Chain Confirmed
             </Badge>
           </div>
-        ) : isRevoked ? (
+
+          {/* ── IDENTITY PANEL — the first thing eyes land on ── */}
+          <div className="rounded-2xl border-2 border-primary/30 bg-primary/5 p-6 mb-5 space-y-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-primary text-center">
+              Registered Certificate Identity
+            </p>
+            <div className="flex flex-col items-center gap-1 text-center">
+              <div className="flex items-center gap-2 mb-1">
+                <User className="h-5 w-5 text-primary/70" />
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">Awarded to</span>
+              </div>
+              <span className="text-3xl font-extrabold text-foreground tracking-tight">
+                {cert.recipient_name}
+              </span>
+            </div>
+            <Separator className="bg-primary/20" />
+            <div className="flex flex-col items-center gap-1 text-center">
+              <div className="flex items-center gap-2 mb-1">
+                <GraduationCap className="h-4 w-4 text-primary/70" />
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">For</span>
+              </div>
+              <span className="text-lg font-semibold text-foreground">
+                {cert.course_name}
+              </span>
+            </div>
+            <Separator className="bg-primary/20" />
+            <div className="flex flex-col items-center gap-1 text-center">
+              <div className="flex items-center gap-2 mb-1">
+                <Building2 className="h-4 w-4 text-primary/70" />
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">Issued by</span>
+              </div>
+              <span className="text-base font-semibold text-foreground">
+                {issuer.org_name}
+              </span>
+              <span className="text-xs text-muted-foreground">{issuer.org_domain}</span>
+            </div>
+            <div className="text-center pt-1">
+              <span className="text-sm text-muted-foreground">
+                {new Date(cert.issued_at).toLocaleDateString("en-IN", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </span>
+            </div>
+          </div>
+
+          {/* ── CROSS-CHECK WARNING — cannot be missed ── */}
+          <div className="rounded-xl border-2 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-5 py-4 mb-6 flex gap-3">
+            <ShieldAlert className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <p className="text-sm font-bold text-amber-800 dark:text-amber-400">
+                Cross-check the physical document
+              </p>
+              <p className="text-xs text-amber-700 dark:text-amber-500 leading-relaxed">
+                The blockchain only proves the <strong>hash exists</strong>. The name, course, and institution shown
+                above are what was registered. If the physical paper shows <strong>any</strong> different name,
+                course, or institution — the document has been <strong>tampered with</strong> and must be rejected,
+                even though this page shows a green tick.
+              </p>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ── REVOKED ──────────────────────────────────────────────── */}
+      {isRevoked && (
+        <div className="text-center mb-8">
           <div className="space-y-3">
             <div className="flex justify-center">
               <div className="h-16 w-16 rounded-full bg-destructive/10 flex items-center justify-center">
@@ -98,7 +170,12 @@ export default async function VerifyResultPage({
               This certificate has been revoked by the issuer
             </Badge>
           </div>
-        ) : (
+        </div>
+      )}
+
+      {/* ── NOT FOUND ──────────────────────────────────────────────── */}
+      {!isValid && !isRevoked && (
+        <div className="text-center mb-8">
           <div className="space-y-3">
             <div className="flex justify-center">
               <div className="h-16 w-16 rounded-full bg-destructive/10 flex items-center justify-center">
@@ -112,10 +189,10 @@ export default async function VerifyResultPage({
               No matching certificate found
             </Badge>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Certificate Details */}
+      {/* ── Certificate Hash ──────────────────────────────────────── */}
       <Card className="mb-6">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
@@ -130,7 +207,7 @@ export default async function VerifyResultPage({
         </CardContent>
       </Card>
 
-      {/* On-Chain Record */}
+      {/* ── On-Chain Record ───────────────────────────────────────── */}
       <Card className="mb-6">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
@@ -222,7 +299,7 @@ export default async function VerifyResultPage({
         </CardContent>
       </Card>
 
-      {/* Database Record */}
+      {/* ── Full Certificate Details (secondary, for reference) ───── */}
       {isInDb && cert && issuer && (
         <Card className="mb-6">
           <CardHeader className="pb-3">
@@ -233,22 +310,18 @@ export default async function VerifyResultPage({
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Recipient
-              </span>
-              <span className="text-sm font-medium">
-                {cert.recipient_name}
-              </span>
+              <span className="text-sm text-muted-foreground">Recipient</span>
+              <span className="text-sm font-medium">{cert.recipient_name}</span>
             </div>
             <Separator />
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">Course</span>
-              <span className="text-sm">{cert.course_name}</span>
+              <span className="text-sm text-right max-w-[60%]">{cert.course_name}</span>
             </div>
             <Separator />
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">Issuer</span>
-              <span className="text-sm">{issuer.org_name}</span>
+              <span className="text-sm text-right max-w-[60%]">{issuer.org_name}</span>
             </div>
             <Separator />
             <div className="flex items-center justify-between">
@@ -259,9 +332,7 @@ export default async function VerifyResultPage({
             </div>
             <Separator />
             <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Issue Date
-              </span>
+              <span className="text-sm text-muted-foreground">Issue Date</span>
               <span className="text-sm">
                 {new Date(cert.issued_at).toLocaleDateString("en-IN", {
                   day: "2-digit",
@@ -274,7 +345,7 @@ export default async function VerifyResultPage({
         </Card>
       )}
 
-      {/* Trust Notice */}
+      {/* ── Trust Notice ──────────────────────────────────────────── */}
       <div className="rounded-md bg-muted/50 border border-border px-4 py-3 text-xs text-muted-foreground leading-relaxed">
         <strong className="text-foreground">About this verification:</strong>{" "}
         The hash shown above is checked against the Certitrust smart contract
@@ -291,7 +362,7 @@ export default async function VerifyResultPage({
         .
       </div>
 
-      {/* Actions */}
+      {/* ── Actions ───────────────────────────────────────────────── */}
       <div className="mt-6 flex flex-col sm:flex-row gap-3">
         <Link href="/verify" className="flex-1">
           <Button variant="outline" className="w-full">

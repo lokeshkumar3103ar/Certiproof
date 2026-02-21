@@ -107,8 +107,9 @@ const s = StyleSheet.create({
   hashBlock: { flex: 1, marginHorizontal: 16, alignItems: "center" },
   sealText:  { fontSize: 7, color: "#9a9aaa", textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 3 },
   uriText:   { fontSize: 8.5, fontWeight: 600, color: "#3a5b8e", marginBottom: 3, textAlign: "center" },
-  hashLabel: { fontSize: 6, color: "#9a9aaa", textTransform: "uppercase", letterSpacing: 1, marginBottom: 1 },
-  hashText:  { fontSize: 5.5, color: "#7a8a9e", textAlign: "center" },
+  hashLabel: { fontSize: 7, color: "#9a9aaa", textTransform: "uppercase", letterSpacing: 1, marginBottom: 2 },
+  // Larger mono font split over 2 lines (~33 chars each) for OCR readability
+  hashText:  { fontSize: 8, color: "#4a5a6e", textAlign: "center", fontFamily: "Courier", letterSpacing: 0.3 },
 
   signatureBlock:       { width: 130, alignItems: "center" },
   signatureImage:       { width: 110, height: 36, objectFit: "contain", marginBottom: 2 },
@@ -183,7 +184,9 @@ export function CertificatePDF({
               <Text style={s.sealText}>Digitally Certified – Blockchain Verified</Text>
               <Text style={s.uriText}>{uri}</Text>
               <Text style={s.hashLabel}>SHA-256 Certificate Hash</Text>
-              <Text style={s.hashText}>{certificateHash}</Text>
+              {/* Split into two ~33-char lines so OCR can read the full hash */}
+              <Text style={s.hashText}>{certificateHash.slice(0, 33)}</Text>
+              <Text style={s.hashText}>{certificateHash.slice(33)}</Text>
             </View>
 
             <View style={s.signatureBlock}>

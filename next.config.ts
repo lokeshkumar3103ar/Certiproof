@@ -17,10 +17,10 @@ const nextConfig: NextConfig = {
           },
           // Control cross-origin referrer info
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          // Disable browser features not needed
+          // Disable browser features not needed — allow camera for photo capture
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
+            value: "camera=(self), microphone=(), geolocation=()",
           },
           // Cross-origin policies
           { key: "X-DNS-Prefetch-Control", value: "on" },

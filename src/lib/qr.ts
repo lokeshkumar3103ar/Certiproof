@@ -9,7 +9,7 @@ export async function generateQRCodeDataUrl(
 ): Promise<string> {
   const appUrl =
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  const verificationUrl = `${appUrl}/verify/${certificateHash}`;
+  const verificationUrl = `${appUrl}/verify/${certificateHash}/confirm`;
 
   return QRCode.toDataURL(verificationUrl, {
     errorCorrectionLevel: "H",
@@ -30,7 +30,7 @@ export async function generateQRCodeBuffer(
 ): Promise<Buffer> {
   const appUrl =
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  const verificationUrl = `${appUrl}/verify/${certificateHash}`;
+  const verificationUrl = `${appUrl}/verify/${certificateHash}/confirm`;
 
   return QRCode.toBuffer(verificationUrl, {
     errorCorrectionLevel: "H",
