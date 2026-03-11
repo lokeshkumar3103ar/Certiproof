@@ -58,6 +58,20 @@ export function Footer() {
             Verification powered by Polygon Amoy Testnet (Chain ID: 80002)
           </p>
         </div>
+
+        <Separator className="my-6" />
+
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-1 text-xs text-muted-foreground">
+          <p>Designed and developed by</p>
+          <a
+            href="https://www.linkedin.com/in/lokesh-kumar-a-r-465218244/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline transition-colors"
+          >
+            Lokesh Kumar A R
+          </a>
+        </div>
       </div>
     </footer>
   );
