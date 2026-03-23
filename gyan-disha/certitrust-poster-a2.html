@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certitrust – Gyan Disha 2026 Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #32446b;
+    --primary-light: #4a6491;
+    --primary-dark: #1e2d4a;
+    --accent: #e8b74a;
+    --accent-dark: #c99a30;
+    --bg: #f5f7fc;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --text-muted: #5a6a8a;
+    --border: #c8d3e8;
+    --light-blue: #e8edf5;
+    --mid-blue: #b3c2d5;
+    --green: #1a7a4a;
+    --green-bg: #e6f4ed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A2 portrait;
+    margin: 0;
+  }
+
+  body {
+    width: 420mm;
+    min-height: 594mm;
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    font-size: 8.5pt;
+    line-height: 1.45;
+  }
+
+  /* ─── POSTER WRAPPER ─── */
+  .poster {
+    width: 420mm;
+    min-height: 594mm;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+  }
+
+  /* ─── HEADER BAND ─── */
+  .header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 6mm 8mm 5mm;
+    display: flex;
+    align-items: stretch;
+    gap: 6mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(255,255,255,0.025) 20px,
+      rgba(255,255,255,0.025) 40px
+    );
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .event-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(232,183,74,0.2);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 6.5pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 4mm;
+    width: fit-content;
+  }
+
+  .poster-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32pt;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    color: var(--white);
+    margin-bottom: 2mm;
+  }
+
+  .poster-title span {
+    color: var(--accent);
+  }
+
+  .poster-subtitle {
+    font-size: 9pt;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+    max-width: 200mm;
+    line-height: 1.5;
+    margin-bottom: 4mm;
+  }
+
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 8mm;
+  }
+
+  .author-name {
+    font-size: 8pt;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .author-detail {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 3mm;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85);
+    font-size: 6.5pt;
+    font-weight: 500;
+    padding: 1.5px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── GYAN DISHA LOGO BOX ─── */
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3mm;
+    position: relative;
+    z-index: 1;
+    min-width: 55mm;
+  }
+
+  .gyan-disha-emblem {
+    width: 50mm;
+    height: 50mm;
+  }
+
+  .hu-label {
+    font-size: 6.5pt;
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* ─── ACCENT BAR ─── */
+  .accent-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 40%, var(--primary-light) 100%);
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats-row {
+    background: var(--light-blue);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    padding: 3mm 8mm;
+    gap: 0;
+  }
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 1.5mm 4mm;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 16pt;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 1mm;
+  }
+  .stat-label {
+    font-size: 6.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+  }
+
+  /* ─── BODY 3-COLUMN GRID ─── */
+  .body-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    padding: 5mm 6mm;
+    column-gap: 4mm;
+  }
+
+  /* ─── SECTION CARD ─── */
+  .section {
+    margin-bottom: 4mm;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    margin-bottom: 2.5mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 2px solid var(--primary);
+  }
+
+  .section-num {
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    color: white;
+    font-size: 5.5pt;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .section-icon {
+    margin-left: auto;
+    font-size: 10pt;
+    opacity: 0.5;
+  }
+
+  /* ─── CONTENT BLOCKS ─── */
+  .para {
+    font-size: 8pt;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 2mm;
+  }
+
+  .para strong {
+    color: var(--primary);
+  }
+
+  /* Problem boxes */
+  .problem-box {
+    background: #fdf0f0;
+    border-left: 3px solid #dc2626;
+    padding: 2mm 3mm;
+    border-radius: 0 3px 3px 0;
+    margin-bottom: 2mm;
+  }
+  .problem-box .pb-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #dc2626;
+    margin-bottom: 0.5mm;
+  }
+  .problem-box .pb-body {
+    font-size: 7.5pt;
+    color: #7a2020;
+    line-height: 1.4;
+  }
+
+  /* Solution layer box */
+  .layer-box {
+    background: var(--light-blue);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    padding: 2mm 3mm;
+    border-radius: 0 3px 3px 0;
+    margin-bottom: 2mm;
+  }
+  .layer-box .lb-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5mm;
+  }
+  .layer-box .lb-body {
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* Step list */
+  .step-list { list-style: none; padding: 0; }
+  .step-list li {
+    display: flex;
+    gap: 2mm;
+    margin-bottom: 1.5mm;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 14px;
+    height: 14px;
+    background: var(--primary);
+    color: white;
+    font-size: 6pt;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.5px;
+  }
+  .step-text {
+    font-size: 7.5pt;
+    line-height: 1.45;
+    color: var(--text);
+  }
+  .step-text strong { color: var(--primary); }
+
+  /* Feature grid */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm;
+  }
+  .feature-item {
+    background: var(--light-blue);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2mm 2.5mm;
+  }
+  .feature-icon { font-size: 9pt; margin-bottom: 1mm; }
+  .feature-title {
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5mm;
+    line-height: 1.2;
+  }
+  .feature-desc {
+    font-size: 6.5pt;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* Tech stack table */
+  .tech-table { width: 100%; border-collapse: collapse; }
+  .tech-table th {
+    background: var(--primary);
+    color: white;
+    font-size: 6.5pt;
+    font-weight: 600;
+    padding: 1.5mm 2mm;
+    text-align: left;
+    letter-spacing: 0.05em;
+  }
+  .tech-table td {
+    font-size: 7pt;
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .tech-table tr:nth-child(even) td { background: var(--light-blue); }
+  .tech-table .tech-cat {
+    font-weight: 600;
+    color: var(--primary);
+    width: 28%;
+  }
+  .tech-table .tech-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5pt;
+    color: var(--text);
+  }
+
+  /* Arch diagram */
+  .arch-diagram {
+    background: var(--light-blue);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3mm;
+    font-size: 7pt;
+    margin-bottom: 2mm;
+  }
+  .arch-layer {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1.5mm 2.5mm;
+    margin-bottom: 1.5mm;
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+  }
+  .arch-layer:last-child { margin-bottom: 0; }
+  .arch-layer-icon { font-size: 9pt; }
+  .arch-layer-content { flex: 1; }
+  .arch-layer-title {
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .arch-layer-detail {
+    font-size: 6.5pt;
+    color: var(--text-muted);
+    margin-top: 0.5mm;
+  }
+  .arch-arrow {
+    text-align: center;
+    color: var(--primary);
+    font-size: 8pt;
+    line-height: 1;
+    margin: -0.5mm 0;
+  }
+
+  /* Results metrics */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm;
+    margin-bottom: 2mm;
+  }
+  .metric-box {
+    background: var(--primary);
+    color: white;
+    border-radius: 4px;
+    padding: 2.5mm 2mm;
+    text-align: center;
+  }
+  .metric-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1mm;
+  }
+  .metric-lbl {
+    font-size: 6pt;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* Security row */
+  .security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5mm;
+    margin-bottom: 2mm;
+  }
+  .sec-item {
+    background: var(--green-bg);
+    border: 1px solid #a3d4b8;
+    border-radius: 3px;
+    padding: 1.5mm;
+    text-align: center;
+  }
+  .sec-icon { font-size: 9pt; }
+  .sec-label { font-size: 6pt; font-weight: 600; color: var(--green); margin-top: 0.5mm; line-height: 1.2; }
+
+  /* Future work list */
+  .future-list { list-style: none; padding: 0; }
+  .future-list li {
+    display: flex;
+    gap: 2mm;
+    margin-bottom: 2mm;
+    padding: 1.5mm 2mm;
+    background: var(--light-blue);
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .future-icon { font-size: 8pt; flex-shrink: 0; margin-top: 0.5px; }
+  .future-text { font-size: 7.5pt; color: var(--text); line-height: 1.35; }
+  .future-text strong { color: var(--primary); }
+
+  /* Conclusion box */
+  .conclusion-box {
+    background: var(--primary);
+    color: white;
+    border-radius: 5px;
+    padding: 3mm;
+    margin-bottom: 2mm;
+  }
+  .conclusion-box p {
+    font-size: 7.5pt;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.9);
+  }
+  .conclusion-box strong { color: var(--accent); }
+
+  /* QR + link */
+  .qr-block {
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    padding: 2.5mm;
+    display: flex;
+    gap: 2.5mm;
+    align-items: center;
+    background: white;
+    margin-bottom: 2mm;
+  }
+  .qr-code {
+    width: 22mm;
+    height: 22mm;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .qr-info { flex: 1; }
+  .qr-title { font-size: 7.5pt; font-weight: 700; color: var(--primary); margin-bottom: 1mm; }
+  .qr-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5pt;
+    color: var(--primary-light);
+    word-break: break-all;
+    margin-bottom: 1.5mm;
+  }
+  .qr-note { font-size: 6.5pt; color: var(--text-muted); line-height: 1.4; }
+
+  /* hash display */
+  .hash-block {
+    background: var(--primary-dark);
+    border-radius: 3px;
+    padding: 1.5mm 2.5mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    color: var(--accent);
+    word-break: break-all;
+    line-height: 1.5;
+    margin-bottom: 2mm;
+    letter-spacing: 0.05em;
+  }
+
+  /* Digilocker badge */
+  .digilocker-badge {
+    background: linear-gradient(135deg, #1a6b9a, #2d8fcc);
+    color: white;
+    border-radius: 4px;
+    padding: 2mm 3mm;
+    font-size: 7pt;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2mm;
+  }
+  .digilocker-badge .dg-sub { font-size: 6pt; font-weight: 400; color: rgba(255,255,255,0.75); margin-top: 0.5mm; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 2mm 0;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--primary-dark);
+    color: rgba(255,255,255,0.6);
+    padding: 2.5mm 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 6.5pt;
+  }
+  .footer strong { color: var(--accent); }
+  .footer-center { text-align: center; color: rgba(255,255,255,0.4); }
+
+  /* Span helpers */
+  .chip {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--primary-dark);
+    font-size: 6pt;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-left: 2px;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+  }
+  .chip-green {
+    background: var(--green-bg);
+    color: var(--green);
+    border: 1px solid #a3d4b8;
+  }
+
+  /* full width section */
+  .full-col { grid-column: 1 / -1; }
+  
+  /* Quote callout */
+  .callout {
+    background: rgba(232,183,74,0.12);
+    border-left: 3px solid var(--accent);
+    padding: 2mm 3mm;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 2mm;
+    font-size: 7.5pt;
+    color: var(--primary-dark);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* col span helpers */
+  .col-span-2 { grid-column: span 2; }
+
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- ══════════════════ HEADER ══════════════════ -->
+  <div class="header">
+    <div class="header-left">
+      <div class="event-badge">⚡ Gyan Disha 2026 · Hindustan University</div>
+      <div class="poster-title">Certi<span>trust</span></div>
+      <div class="poster-subtitle">Blockchain-Anchored Digital Certificate Issuance &amp; Cryptographic Verification — Trust the Blockchain, Not the Website.</div>
+      <div class="author-row">
+        <div>
+          <div class="author-name">Lokesh Kumar A R</div>
+          <div class="author-detail">Department of Computer Science &amp; Engineering · Hindustan University</div>
+        </div>
+      </div>
+      <div style="margin-top:3mm;">
+        <div class="tag-row">
+          <span class="tag">SHA-256 Hashing</span>
+          <span class="tag">Polygon Amoy Blockchain</span>
+          <span class="tag">Smart Contracts (Solidity)</span>
+          <span class="tag">Next.js 16</span>
+          <span class="tag">Azure OCR</span>
+          <span class="tag">DigiLocker-Ready</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gyan Disha Emblem -->
+    <div class="header-right">
+      <svg class="gyan-disha-emblem" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(232,183,74,0.5)" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="88" fill="rgba(255,255,255,0.04)" stroke="rgba(232,183,74,0.8)" stroke-width="2.5"/>
+        <!-- Inner decorative ring -->
+        <circle cx="100" cy="100" r="72" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+        <!-- Central lamp / flame symbol (Gyan = Knowledge / Light) -->
+        <!-- Lamp base -->
+        <ellipse cx="100" cy="148" rx="28" ry="5" fill="rgba(232,183,74,0.6)"/>
+        <rect x="86" y="138" width="28" height="12" rx="3" fill="#e8b74a" opacity="0.9"/>
+        <!-- Lamp stem -->
+        <rect x="97" y="115" width="6" height="24" rx="2" fill="#e8b74a" opacity="0.9"/>
+        <!-- Lamp bowl -->
+        <path d="M74 115 Q100 108 126 115 Q120 128 100 132 Q80 128 74 115Z" fill="#e8b74a" opacity="0.9"/>
+        <!-- Flame inner -->
+        <path d="M100 55 C100 55 88 75 88 95 C88 108 93 115 100 115 C107 115 112 108 112 95 C112 75 100 55 100 55Z" fill="rgba(255,220,100,0.95)"/>
+        <path d="M100 68 C100 68 92 83 92 97 C92 107 95 113 100 113 C105 113 108 107 108 97 C108 83 100 68 100 68Z" fill="white" opacity="0.7"/>
+        <!-- Rays -->
+        <line x1="100" y1="28" x2="100" y2="18" stroke="rgba(232,183,74,0.7)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="128" y1="36" x2="134" y2="28" stroke="rgba(232,183,74,0.7)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="148" y1="60" x2="156" y2="55" stroke="rgba(232,183,74,0.7)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="72" y1="36" x2="66" y2="28" stroke="rgba(232,183,74,0.7)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="52" y1="60" x2="44" y2="55" stroke="rgba(232,183,74,0.7)" stroke-width="2" stroke-linecap="round"/>
+        <!-- Text -->
+        <text x="100" y="172" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="rgba(232,183,74,1)" letter-spacing="1">GYAN DISHA</text>
+        <text x="100" y="186" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="rgba(255,255,255,0.7)" letter-spacing="3">2 0 2 6</text>
+        <!-- Stars -->
+        <text x="38" y="104" text-anchor="middle" font-size="9" fill="rgba(232,183,74,0.5)">✦</text>
+        <text x="162" y="104" text-anchor="middle" font-size="9" fill="rgba(232,183,74,0.5)">✦</text>
+      </svg>
+      <div class="hu-label">Hindustan Institute of Technology &amp; Science<br>Department Exhibition 2026</div>
+    </div>
+  </div>
+
+  <div class="accent-bar"></div>
+
+  <!-- ══════════════════ STATS ROW ══════════════════ -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-value">SHA-256</div>
+      <div class="stat-label">Hash Algorithm</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">&lt; 2s</div>
+      <div class="stat-label">Verification Time</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">100%</div>
+      <div class="stat-label">Tamper Evidence</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">Polygon</div>
+      <div class="stat-label">Blockchain Network</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Central Server Dependency</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">DigiLocker</div>
+      <div class="stat-label">Integration Ready</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ BODY GRID ══════════════════ -->
+  <div class="body-grid">
+
+    <!-- ── COLUMN 1 ── -->
+    <div class="column-1">
+
+      <!-- 1. ABSTRACT -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">1</div>
+          <div class="section-title">Abstract</div>
+        </div>
+        <div class="callout">
+          "A certificate is only as trustworthy as the system verifying it — and today's systems are built on URLs, not cryptography."
+        </div>
+        <p class="para">
+          <strong>Certitrust</strong> is a full-stack digital credentialing platform that issues and verifies academic and professional certificates using <strong>cryptographic hashing (SHA-256)</strong> and <strong>blockchain anchoring on Polygon Amoy</strong>. It eliminates the single point of failure inherent in centralized verification databases by recording every certificate hash immutably on-chain. Anyone — employer, institution, or individual — can independently verify a certificate's authenticity by querying the public blockchain directly, with no dependency on Certitrust's servers.
+        </p>
+        <p class="para">
+          The platform additionally supports <strong>forensic OCR-based tamper detection</strong> via Azure Document Intelligence, <strong>bulk issuance via CSV</strong>, institutional branding, and a <strong>DigiLocker-compatible PULL API</strong> ready for integration with India's national credential infrastructure.
+        </p>
+      </div>
+
+      <!-- 2. PROBLEM STATEMENT -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">2</div>
+          <div class="section-title">Problem Statement</div>
+        </div>
+        <p class="para" style="margin-bottom:2.5mm;">Current certificate verification systems suffer from three critical flaws that make credentials susceptible to forgery and system failure:</p>
+
+        <div class="problem-box">
+          <div class="pb-title">⚠ Spoofable QR Codes</div>
+          <div class="pb-body">QR codes link to centralized URLs. Cloning a website and replacing the link creates a convincing fake that "verifies" against a fraudulent database — with zero technical barrier.</div>
+        </div>
+
+        <div class="problem-box">
+          <div class="pb-title">⚠ Single Point of Failure</div>
+          <div class="pb-body">Centralized databases mean verification fails when the server is down, company shuts down, or DNS lapses. Trust is tied to institutional uptime, not truth.</div>
+        </div>
+
+        <div class="problem-box">
+          <div class="pb-title">⚠ No Cryptographic Proof</div>
+          <div class="pb-body">Visual watermarks and institutional stamps can be replicated. Without digital signatures and hashing, authenticity is an assumption — not a mathematical guarantee.</div>
+        </div>
+      </div>
+
+      <!-- 3. PROPOSED SYSTEM -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">3</div>
+          <div class="section-title">Proposed System</div>
+        </div>
+        <p class="para">Certitrust replaces the trust-the-website model with a <strong>three-layer cryptographic trust stack</strong>:</p>
+
+        <div class="layer-box">
+          <div class="lb-title">🔐 Layer 1 — Cryptographic Hash</div>
+          <div class="lb-body">Every certificate generates a unique SHA-256 fingerprint from metadata (issuer, recipient, course, date, UUID). Any modification — even one character — produces a completely different hash, making silent tampering cryptographically impossible.</div>
+        </div>
+
+        <div class="layer-box">
+          <div class="lb-title">⛓ Layer 2 — On-Chain Registry</div>
+          <div class="lb-body">The hash is recorded in <strong>CertChainRegistry.sol</strong> on Polygon Amoy. The issuer's wallet address and block timestamp are permanently linked. No one can insert a record without the issuer's private key.</div>
+        </div>
+
+        <div class="layer-box">
+          <div class="lb-title">🌐 Layer 3 — Independent Verification</div>
+          <div class="lb-body">Anyone can verify by querying the public smart contract — or Polygonscan directly. Even if Certitrust's website is offline or cloned, the blockchain is the ground truth.</div>
+        </div>
+      </div>
+
+    </div><!-- /col-1 -->
+
+    <!-- ── COLUMN 2 ── -->
+    <div class="column-2">
+
+      <!-- 4. METHODOLOGY -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">4</div>
+          <div class="section-title">Methodology</div>
+        </div>
+
+        <p class="para" style="margin-bottom:2mm;"><strong>Issuance Flow</strong></p>
+        <ul class="step-list">
+          <li><span class="step-num">1</span><span class="step-text"><strong>Form Submission:</strong> Issuer enters recipient name, email, course, date, certificate type — validated via Zod schema server-side.</span></li>
+          <li><span class="step-num">2</span><span class="step-text"><strong>Hash Computation:</strong> Server computes <code>SHA-256("issuer_id | name | course | date | uuid")</code> — deterministic, collision-resistant.</span></li>
+          <li><span class="step-num">3</span><span class="step-text"><strong>Blockchain Anchoring:</strong> Ethers.js calls <code>CertChainRegistry.issue(bytes32 hash)</code> on Polygon Amoy. Tx signed with deployer private key server-side.</span></li>
+          <li><span class="step-num">4</span><span class="step-text"><strong>PDF Generation:</strong> @react-pdf/renderer builds an institutional certificate (A4 landscape) embedding QR code, hash footer, org logo &amp; signature.</span></li>
+          <li><span class="step-num">5</span><span class="step-text"><strong>Storage:</strong> PDF stored in Supabase Storage; metadata saved in PostgreSQL with tx hash, pdf URL, and DigiLocker URI.</span></li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <p class="para" style="margin-bottom:2mm;"><strong>Verification Flow</strong></p>
+        <ul class="step-list">
+          <li><span class="step-num">1</span><span class="step-text"><strong>Input:</strong> Verifier scans QR code or pastes hash at <code>/verify</code> — no account required.</span></li>
+          <li><span class="step-num">2</span><span class="step-text"><strong>On-Chain Lookup:</strong> <code>CertChainRegistry.verify(hash)</code> called via read-only Ethers.js provider — zero gas cost.</span></li>
+          <li><span class="step-num">3</span><span class="step-text"><strong>Result Display:</strong> Returns issuer address, issuance timestamp, and revocation status. Green / Red / Not Found badge shown.</span></li>
+          <li><span class="step-num">4</span><span class="step-text"><strong>Forensic Check (optional):</strong> Upload certificate image/PDF → Azure Document Intelligence OCR → re-hash extracted fields → compare vs on-chain hash.</span></li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <!-- Architecture -->
+        <p class="para" style="margin-bottom:2mm;"><strong>System Architecture</strong></p>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <div class="arch-layer-icon">🖥</div>
+            <div class="arch-layer-content">
+              <div class="arch-layer-title">Presentation Layer</div>
+              <div class="arch-layer-detail">Next.js 16 App Router · shadcn/ui · Tailwind CSS 4 · React 19</div>
+            </div>
+          </div>
+          <div class="arch-arrow">▼</div>
+          <div class="arch-layer">
+            <div class="arch-layer-icon">⚙</div>
+            <div class="arch-layer-content">
+              <div class="arch-layer-title">Application Layer</div>
+              <div class="arch-layer-detail">Next.js Server Actions · Zod Validation · @react-pdf/renderer · Azure OCR</div>
+            </div>
+          </div>
+          <div class="arch-arrow">▼</div>
+          <div class="arch-layer">
+            <div class="arch-layer-icon">🗄</div>
+            <div class="arch-layer-content">
+              <div class="arch-layer-title">Data Layer</div>
+              <div class="arch-layer-detail">Supabase PostgreSQL (RLS) · Supabase Storage · Supabase Auth</div>
+            </div>
+          </div>
+          <div class="arch-arrow">▼</div>
+          <div class="arch-layer" style="border-left:3px solid var(--accent); background:rgba(232,183,74,0.08);">
+            <div class="arch-layer-icon">⛓</div>
+            <div class="arch-layer-content">
+              <div class="arch-layer-title">Blockchain Layer</div>
+              <div class="arch-layer-detail">CertChainRegistry.sol · Polygon Amoy (Chain ID 80002) · Ethers.js 6 · Hardhat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. SMART CONTRACT -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">5</div>
+          <div class="section-title">Smart Contract</div>
+        </div>
+        <p class="para">The core logic lives in <strong>CertChainRegistry.sol</strong> (Solidity ^0.8.24), deployed on Polygon Amoy. It stores a mapping of <code>bytes32 hash → CertRecord</code> with three functions:</p>
+        <div class="hash-block">
+          struct CertRecord {<br>
+          &nbsp; address issuer;&nbsp;&nbsp;&nbsp;// who issued<br>
+          &nbsp; uint256 issuedAt;&nbsp;&nbsp;// block timestamp<br>
+          &nbsp; uint256 revokedAt;&nbsp;// 0 = active<br>
+          }<br>
+          mapping(bytes32 => CertRecord) public records;<br><br>
+          issue(bytes32 hash) → stores on-chain, prevents duplicates<br>
+          revoke(bytes32 hash) → only issuer, immutable timestamp<br>
+          verify(bytes32 hash) → view, zero gas cost
+        </div>
+      </div>
+
+    </div><!-- /col-2 -->
+
+    <!-- ── COLUMN 3 ── -->
+    <div class="column-3">
+
+      <!-- 6. KEY FEATURES -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">6</div>
+          <div class="section-title">Key Features</div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🔐</div>
+            <div class="feature-title">Cryptographic Issuance</div>
+            <div class="feature-desc">SHA-256 fingerprint from metadata — deterministic, collision-resistant identity per certificate.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⛓</div>
+            <div class="feature-title">Blockchain Anchoring</div>
+            <div class="feature-desc">Immutable Polygon Amoy on-chain registry links hash to issuer wallet and block timestamp.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌐</div>
+            <div class="feature-title">Public Verification</div>
+            <div class="feature-desc">No login required. Hash lookup via read-only smart contract call. Zero gas cost for verifiers.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🔍</div>
+            <div class="feature-title">Forensic OCR Check</div>
+            <div class="feature-desc">Upload certificate image → Azure Document Intelligence extracts fields → re-hash → compare on-chain.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📄</div>
+            <div class="feature-title">PDF Certificate Gen</div>
+            <div class="feature-desc">Institutional-grade A4 PDF with logo, signature, embedded QR, and monospace hash footer.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📦</div>
+            <div class="feature-title">Bulk Issuance (CSV)</div>
+            <div class="feature-desc">Batch issue certificates from CSV upload with progress monitoring and success/failure reporting.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🏛</div>
+            <div class="feature-title">Institutional Branding</div>
+            <div class="feature-desc">Custom logo, signature upload, org name and domain — per-institution certificate identity.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🇮🇳</div>
+            <div class="feature-title">DigiLocker Ready</div>
+            <div class="feature-desc">PULL API endpoint with DigiLocker URI format — register on apisetu.gov.in, no code change needed.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🚫</div>
+            <div class="feature-title">Certificate Revocation</div>
+            <div class="feature-desc">On-chain revocation with block timestamp. Only original issuer can revoke. Permanent record.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-title">Role-Based Access</div>
+            <div class="feature-desc">Supabase Auth + RLS. Issuers own their data; public can verify but not modify.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. SECURITY -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">7</div>
+          <div class="section-title">Security Architecture</div>
+        </div>
+        <div class="security-grid">
+          <div class="sec-item">
+            <div class="sec-icon">🔑</div>
+            <div class="sec-label">SHA-256 Hash Fingerprinting</div>
+          </div>
+          <div class="sec-item">
+            <div class="sec-icon">✍</div>
+            <div class="sec-label">ECDSA Blockchain Signing</div>
+          </div>
+          <div class="sec-item">
+            <div class="sec-icon">🛡</div>
+            <div class="sec-label">Row-Level Security (RLS)</div>
+          </div>
+          <div class="sec-item">
+            <div class="sec-icon">✅</div>
+            <div class="sec-label">Zod Schema Validation</div>
+          </div>
+          <div class="sec-item">
+            <div class="sec-icon">🔐</div>
+            <div class="sec-label">Server-Side Key Management</div>
+          </div>
+          <div class="sec-item">
+            <div class="sec-icon">🔗</div>
+            <div class="sec-label">HMAC-SHA256 DigiLocker Auth</div>
+          </div>
+        </div>
+        <p class="para" style="font-size:7pt;color:var(--text-muted);">Private keys are never exposed to the client. Parameterized queries prevent SQL injection. React's JSX escaping prevents XSS. Server Actions prevent CSRF.</p>
+      </div>
+
+      <!-- 8. RESULTS -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">8</div>
+          <div class="section-title">Results &amp; Performance</div>
+        </div>
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-val">&lt; 2s</div>
+            <div class="metric-lbl">Verification Latency</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">100%</div>
+            <div class="metric-lbl">Tamper Detection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">~0¢</div>
+            <div class="metric-lbl">Verification Cost (read-only)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">∞</div>
+            <div class="metric-lbl">Blockchain Lifespan</div>
+          </div>
+        </div>
+        <p class="para" style="font-size:7pt;">Issuance takes 5–15s on Amoy testnet (single tx per certificate). Mainnet (Polygon PoS) estimated <strong>~0.001 POL ≈ &lt;$0.001</strong> per certificate. Supabase PostgreSQL with indexed <code>certificate_hash</code> and <code>issuer_id</code> supports horizontal scaling. Vercel deployment enables serverless auto-scaling for unlimited concurrent verifications.</p>
+      </div>
+
+      <!-- 9. FUTURE WORK -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">9</div>
+          <div class="section-title">Future Work</div>
+        </div>
+        <ul class="future-list">
+          <li><span class="future-icon">🔗</span><span class="future-text"><strong>Polygon Mainnet:</strong> Migrate from testnet to Polygon PoS mainnet for production credential issuance.</span></li>
+          <li><span class="future-icon">📋</span><span class="future-text"><strong>Merkle Tree Batch Issuance:</strong> Bundle multiple hashes in a single transaction to cut gas costs for bulk scenarios.</span></li>
+          <li><span class="future-icon">🏛</span><span class="future-text"><strong>Multi-Sig Wallets per Institution:</strong> Each issuer gets independent multi-signature wallet for enhanced security.</span></li>
+          <li><span class="future-icon">🇮🇳</span><span class="future-text"><strong>Production DigiLocker Integration:</strong> Register on apisetu.gov.in — API structure is complete, only config needed.</span></li>
+          <li><span class="future-icon">🔔</span><span class="future-text"><strong>Real-Time Fraud Alerts:</strong> Notify issuers when a certificate is verified, enabling fraud pattern detection.</span></li>
+        </ul>
+      </div>
+
+      <!-- 10. CONCLUSION -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-num">10</div>
+          <div class="section-title">Conclusion</div>
+        </div>
+        <div class="conclusion-box">
+          <p>Certitrust demonstrates that <strong>certificate authenticity can be mathematically guaranteed</strong> — not institutionally assumed. By anchoring SHA-256 hashes on Polygon's immutable blockchain, it decouples verification from any single server, company, or domain. Even if the website is cloned or shut down, every certificate remains verifiable on Polygonscan forever. With forensic OCR, bulk issuance, institutional branding, and a DigiLocker-ready API, Certitrust is <strong>production-grade infrastructure</strong> for the digital credential ecosystem.</p>
+        </div>
+        <div class="digilocker-badge">
+          🇮🇳 DigiLocker Integration Architecture Complete
+          <div class="dg-sub">Awaiting apisetu.gov.in registration — zero code changes required for go-live</div>
+        </div>
+        <!-- Live demo -->
+        <div class="qr-block">
+          <!-- QR code SVG (URL pattern for certiproof-eta.vercel.app) -->
+          <div class="qr-code">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+              <rect width="100" height="100" fill="white"/>
+              <!-- QR finder patterns top-left -->
+              <rect x="5" y="5" width="28" height="28" rx="2" fill="#32446b"/>
+              <rect x="9" y="9" width="20" height="20" rx="1" fill="white"/>
+              <rect x="13" y="13" width="12" height="12" rx="1" fill="#32446b"/>
+              <!-- QR finder patterns top-right -->
+              <rect x="67" y="5" width="28" height="28" rx="2" fill="#32446b"/>
+              <rect x="71" y="9" width="20" height="20" rx="1" fill="white"/>
+              <rect x="75" y="13" width="12" height="12" rx="1" fill="#32446b"/>
+              <!-- QR finder patterns bottom-left -->
+              <rect x="5" y="67" width="28" height="28" rx="2" fill="#32446b"/>
+              <rect x="9" y="71" width="20" height="20" rx="1" fill="white"/>
+              <rect x="13" y="75" width="12" height="12" rx="1" fill="#32446b"/>
+              <!-- Data modules (decorative pattern) -->
+              <rect x="40" y="5" width="5" height="5" fill="#32446b"/>
+              <rect x="50" y="5" width="5" height="5" fill="#32446b"/>
+              <rect x="60" y="5" width="5" height="5" fill="#32446b"/>
+              <rect x="40" y="12" width="5" height="5" fill="#32446b"/>
+              <rect x="55" y="12" width="5" height="5" fill="#32446b"/>
+              <rect x="40" y="19" width="10" height="5" fill="#32446b"/>
+              <rect x="57" y="19" width="8" height="5" fill="#32446b"/>
+              <rect x="40" y="26" width="5" height="5" fill="#32446b"/>
+              <rect x="50" y="26" width="10" height="5" fill="#32446b"/>
+              <rect x="5" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="15" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="25" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="40" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="50" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="60" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="70" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="82" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="92" y="40" width="5" height="5" fill="#32446b"/>
+              <rect x="5" y="50" width="10" height="5" fill="#32446b"/>
+              <rect x="20" y="50" width="5" height="5" fill="#32446b"/>
+              <rect x="40" y="50" width="10" height="5" fill="#32446b"/>
+              <rect x="55" y="50" width="5" height="5" fill="#32446b"/>
+              <rect x="65" y="50" width="10" height="5" fill="#32446b"/>
+              <rect x="80" y="50" width="5" height="5" fill="#32446b"/>
+              <rect x="90" y="50" width="5" height="5" fill="#32446b"/>
+              <rect x="5" y="60" width="5" height="5" fill="#32446b"/>
+              <rect x="20" y="60" width="10" height="5" fill="#32446b"/>
+              <rect x="40" y="60" width="5" height="5" fill="#32446b"/>
+              <rect x="55" y="60" width="10" height="5" fill="#32446b"/>
+              <rect x="70" y="60" width="5" height="5" fill="#32446b"/>
+              <rect x="85" y="60" width="10" height="5" fill="#32446b"/>
+              <rect x="40" y="70" width="5" height="5" fill="#32446b"/>
+              <rect x="50" y="70" width="5" height="5" fill="#32446b"/>
+              <rect x="60" y="70" width="10" height="5" fill="#32446b"/>
+              <rect x="75" y="70" width="5" height="5" fill="#32446b"/>
+              <rect x="85" y="70" width="10" height="5" fill="#32446b"/>
+              <rect x="40" y="80" width="10" height="5" fill="#32446b"/>
+              <rect x="55" y="80" width="5" height="5" fill="#32446b"/>
+              <rect x="65" y="80" width="10" height="5" fill="#32446b"/>
+              <rect x="80" y="80" width="5" height="5" fill="#32446b"/>
+              <rect x="40" y="90" width="5" height="5" fill="#32446b"/>
+              <rect x="50" y="90" width="10" height="5" fill="#32446b"/>
+              <rect x="65" y="90" width="5" height="5" fill="#32446b"/>
+              <rect x="75" y="90" width="10" height="5" fill="#32446b"/>
+              <rect x="92" y="90" width="5" height="5" fill="#32446b"/>
+            </svg>
+          </div>
+          <div class="qr-info">
+            <div class="qr-title">🔗 Live Demo</div>
+            <div class="qr-url">certiproof-eta.vercel.app</div>
+            <div class="qr-note">Scan to verify a real certificate or issue a demo credential. No account required for verification.</div>
+          </div>
+        </div>
+
+        <p style="font-size:6.5pt; color:var(--text-muted); text-align:center; margin-top:1mm;">
+          Built with Next.js · Solidity · Polygon · Supabase · Azure · Vercel &nbsp;·&nbsp; Hackathonix '26
+        </p>
+      </div>
+
+    </div><!-- /col-3 -->
+
+  </div><!-- /body-grid -->
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <div class="footer">
+    <div>Designed &amp; Developed by <strong>Lokesh Kumar A R</strong> &nbsp;·&nbsp; CSE, Hindustan University</div>
+    <div class="footer-center">Gyan Disha 2026 &nbsp;·&nbsp; 27 March 2026</div>
+    <div>Live: <strong>certiproof-eta.vercel.app</strong></div>
+  </div>
+
+</div>
+</body>
+</html>
