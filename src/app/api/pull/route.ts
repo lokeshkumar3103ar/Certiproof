@@ -1,25 +1,36 @@
+import { createHmac } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import type { Certificate, Issuer } from "@/lib/types";
 
-/**
- * DigiLocker-Compatible PULL API
- *
- * This endpoint mirrors the DigiLocker Issuer PULL API structure.
- * It accepts a document URI and returns certificate metadata + PDF location.
- *
- * In production, this would use HMAC authentication matching DigiLocker's spec.
- * For the hackathon demo, authentication is documented but not enforced.
- *
- * DigiLocker PULL API Spec Reference:
- * - POST request with document URI
- * - Returns XML/JSON with document metadata
- * - HMAC-SHA256 authentication header
- */
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const bodyText = await request.text();
+    const body = JSON.parse(bodyText);
     const { uri, docType } = body;
+
+    // HMAC Authentication Check
+    const hmacSecret = process.env.DIGILOCKER_HMAC_SECRET;
+    if (hmacSecret) {
+      const signature = request.headers.get("X-Digilocker-HMAC");
+      if (!signature) {
+        return NextResponse.json(
+          { responseCode: "ERR-01", responseMessage: "Missing authentication signature" },
+          { status: 401 }
+        );
+      }
+
+      const expectedSignature = createHmac("sha256", hmacSecret)
+        .update(bodyText)
+        .digest("hex");
+
+      if (signature !== expectedSignature) {
+        return NextResponse.json(
+          { responseCode: "ERR-01", responseMessage: "Invalid authentication signature" },
+          { status: 401 }
+        );
+      }
+    }
 
     if (!uri) {
       return NextResponse.json(
@@ -111,8 +122,8 @@ export async function GET() {
       "Submit a POST request with a document URI to retrieve certificate metadata.",
     endpoint: "POST /api/pull",
     authentication:
-      "HMAC-SHA256 (documented, not enforced in testnet demo). " +
-      "Production integration with apisetu.gov.in requires endpoint configuration only.",
+      "HMAC-SHA256 (Enforced). " +
+      "Requires X-Digilocker-HMAC header containing hex digest of request body.",
     request: {
       method: "POST",
       contentType: "application/json",

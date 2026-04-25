@@ -1,4 +1,4 @@
-﻿-- ============================================
+-- ============================================
 -- Certitrust Database Schema
 -- Run this in the Supabase SQL Editor
 -- ============================================
@@ -148,6 +148,7 @@ create policy "Authenticated users can upload logos"
   with check (
     bucket_id = 'logos'
     and auth.role() = 'authenticated'
+    and (storage.foldername(name))[1] = auth.uid()::text
   );
 
 drop policy if exists "Authenticated users can update logos" on storage.objects;
@@ -155,7 +156,7 @@ create policy "Authenticated users can update logos"
   on storage.objects for update
   using (
     bucket_id = 'logos'
-    and auth.uid()::text = (storage.foldername(name))[1]
+    and (storage.foldername(name))[1] = auth.uid()::text
   );
 
 -- ============================================
@@ -176,6 +177,7 @@ create policy "Authenticated users can upload signatures"
   with check (
     bucket_id = 'signatures'
     and auth.role() = 'authenticated'
+    and (storage.foldername(name))[1] = auth.uid()::text
   );
 
 drop policy if exists "Authenticated users can update signatures" on storage.objects;
@@ -183,5 +185,5 @@ create policy "Authenticated users can update signatures"
   on storage.objects for update
   using (
     bucket_id = 'signatures'
-    and auth.uid()::text = (storage.foldername(name))[1]
+    and (storage.foldername(name))[1] = auth.uid()::text
   );
