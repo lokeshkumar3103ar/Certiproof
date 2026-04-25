@@ -13,7 +13,7 @@ export async function proxy(request: NextRequest) {
     pathname === "/api/verify/extract" ||
     pathname.includes("/pdf")
   ) {
-    const ip = request.ip || request.headers.get("x-forwarded-for") || "anonymous";
+    const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "anonymous";
     const now = Date.now();
     const windowMs = 60 * 1000; // 1 minute
     const limit = pathname === "/api/verify/extract" ? 5 : 10;
