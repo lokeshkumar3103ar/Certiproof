@@ -6,10 +6,11 @@
  *  → raw text lines → deterministic regex parser (zero GPT calls)
  */
 
-import {
-  AzureKeyCredential,
-  DocumentAnalysisClient,
-} from "@azure/ai-form-recognizer";
+import DocumentIntelligence, {
+  getLongRunningPoller,
+  isUnexpected,
+  type AnalyzeOperationOutput,
+} from "@azure-rest/ai-document-intelligence";
 
 import type {
   Certificate,
@@ -55,27 +56,85 @@ const POST_TEXTS = [
 ];
 
 // ── Azure client ──────────────────────────────────────────────────────────────
-function getDocIntelClient(): DocumentAnalysisClient {
-  return new DocumentAnalysisClient(
+function getDocIntelClient() {
+  return DocumentIntelligence(
     process.env.AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT!,
-    new AzureKeyCredential(process.env.AZURE_DOCUMENT_INTELLIGENCE_KEY!)
+    { key: process.env.AZURE_DOCUMENT_INTELLIGENCE_KEY! }
   );
 }
 
 // ── Doc Intelligence → raw text (PDF AND images) ─────────────────────────────
-async function extractTextWithDocIntel(buffer: Buffer): Promise<string> {
-  const client = getDocIntelClient();
-  const poller = await client.beginAnalyzeDocument("prebuilt-read", buffer);
-  const result = await poller.pollUntilDone();
+// Uses @azure-rest/ai-document-intelligence (API 2024-11-30), the modern
+// replacement for the deprecated @azure/ai-form-recognizer SDK.
+// Retries up to 3 times with exponential backoff to handle transient Azure 500s.
+async function extractTextWithDocIntel(buffer: Buffer, attempt = 1): Promise<string> {
+  const MAX_ATTEMPTS = 3;
+  try {
+    const client = getDocIntelClient();
 
-  const lines: string[] = [];
-  for (const page of result.pages ?? []) {
-    for (const line of page.lines ?? []) {
-      lines.push(line.content);
+    // Validate env vars are present before calling Azure
+    const endpoint = process.env.AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT;
+    const key = process.env.AZURE_DOCUMENT_INTELLIGENCE_KEY;
+    if (!endpoint || !key) {
+      throw new Error(
+        `[ocr] Missing env vars: AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT=${endpoint ? "set" : "MISSING"}, KEY=${key ? "set" : "MISSING"}`
+      );
     }
+
+    // New SDK takes base64Source as JSON body (not a raw binary stream)
+    const base64Source = buffer.toString("base64");
+
+    const initialResponse = await client
+      .path("/documentModels/{modelId}:analyze", "prebuilt-read")
+      .post({
+        contentType: "application/json",
+        body: { base64Source },
+      });
+
+    // Always log the raw response status so we can diagnose Azure issues
+    console.log(
+      `[ocr] Azure initial response: HTTP ${initialResponse.status} (attempt ${attempt})`
+    );
+
+    if (isUnexpected(initialResponse)) {
+      // Dump the full body so we can see the real error
+      console.error("[ocr] Azure error body:", JSON.stringify(initialResponse.body, null, 2));
+      const errBody = initialResponse.body as { error?: { code?: string; message?: string } };
+      throw new Error(
+        `Azure Document Intelligence error: HTTP ${initialResponse.status} — ${errBody?.error?.code ?? "unknown"}: ${errBody?.error?.message ?? JSON.stringify(initialResponse.body)}`
+      );
+    }
+
+    const poller = getLongRunningPoller(client, initialResponse);
+    const pollResult = await poller.pollUntilDone();
+    const result = pollResult.body as AnalyzeOperationOutput;
+
+    console.log(`[ocr] Azure poll complete: HTTP ${pollResult.status}`);
+
+    const lines: string[] = [];
+    for (const page of result.analyzeResult?.pages ?? []) {
+      for (const line of page.lines ?? []) {
+        lines.push(line.content);
+      }
+    }
+    return lines.join("\n");
+  } catch (err: unknown) {
+    console.error(`[ocr] Error on attempt ${attempt}:`, err);
+
+    const message = err instanceof Error ? err.message : String(err);
+    // Check if it looks like a transient 5xx
+    const isTransient = /HTTP 5\d\d|500|503|502|504/.test(message);
+
+    if (isTransient && attempt < MAX_ATTEMPTS) {
+      const delayMs = 2000 * 2 ** (attempt - 1); // 2s, 4s
+      console.warn(`[ocr] Transient error, retrying in ${delayMs / 1000}s (attempt ${attempt}/${MAX_ATTEMPTS})…`);
+      await new Promise((res) => setTimeout(res, delayMs));
+      return extractTextWithDocIntel(buffer, attempt + 1);
+    }
+    throw err;
   }
-  return lines.join("\n");
 }
+
 
 // ── Deterministic regex field parser ─────────────────────────────────────────
 function parseTextFields(text: string): CertificateFields {
